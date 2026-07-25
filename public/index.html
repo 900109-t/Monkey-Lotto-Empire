@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- ============ 1. 닉네임 입력 화면 ============ -->
+<!-- ============ 1. 닉네임 입력 ============ -->
 <div id="screen-nickname" class="screen active">
   <div class="nick-wrap">
     <div class="monkey-hero">🐵</div>
@@ -42,98 +42,98 @@
 <!-- ============ 3. 메인 게임 화면 ============ -->
 <div id="screen-main" class="screen">
 
-  <!-- 상단 재화 바 -->
   <div class="top-bar">
     <div class="res-item"><span class="res-icon">💰</span><span id="res-money">0</span></div>
     <div class="res-item"><span class="res-icon">🍌</span><span id="res-banana">0</span></div>
     <div class="res-item"><span class="res-icon">🍀</span><span id="res-luck">0</span></div>
     <div class="res-item"><span class="res-icon">🔮</span><span id="res-fate">0</span></div>
+    <button id="btn-daily-badge" class="icon-btn">🎁</button>
     <button id="btn-settings" class="icon-btn">⚙️</button>
   </div>
 
-  <!-- 내 운명 카드 -->
-  <div id="my-fate-card" class="my-fate-card">
+  <div class="my-fate-card">
     <span id="my-fate-icon">🔮</span>
     <span id="my-fate-name">운명 로딩중...</span>
+    <span id="my-prestige-badge" class="prestige-badge hidden">🌌 x0</span>
   </div>
 
-  <!-- 이벤트 배너 -->
   <div id="event-banner" class="event-banner hidden"></div>
 
-  <!-- 중앙: 미니 돌잡이 원숭이 (탭하면 수동 보상) -->
-  <div class="center-stage">
-    <div id="tap-monkey" class="tap-monkey">🐵</div>
-    <div class="tap-hint">원숭이를 눌러서 보너스 획득!</div>
-    <div id="floating-text-layer" class="floating-text-layer"></div>
+  <!-- 자동 로또 스테이지 -->
+  <div class="lotto-stage">
+    <div class="lotto-header">
+      <span class="lotto-title">🎟️ 자동 로또 추첨</span>
+      <span id="lotto-timer" class="lotto-timer">다음 추첨 8초</span>
+    </div>
+    <div id="lotto-monkeys" class="lotto-monkeys"></div>
+    <div id="lotto-balls" class="lotto-balls"></div>
+    <div id="lotto-result-text" class="lotto-result-text">원숭이들이 번호를 고르는 중...</div>
+    <div class="floating-text-layer" id="floating-text-layer"></div>
   </div>
 
-  <!-- 업그레이드 리스트 -->
+  <div class="tap-hint-row">
+    <span id="tap-monkey" class="tap-mini-monkey">🐵 탭해서 보너스!</span>
+  </div>
+
+  <!-- 시설(업그레이드) 패널 -->
   <div class="upgrade-panel">
-    <div class="upgrade-row" data-upgrade="production">
+    <div class="upgrade-row" data-upgrade="farm">
       <div class="up-info">
-        <div class="up-name">💰 생산량 업그레이드 <span class="up-lv" id="lv-production">Lv.1</span></div>
-        <div class="up-desc">초당 자동 수익 증가</div>
+        <div class="up-name">🍌 바나나 농장 <span class="up-lv" id="lv-farm">Lv.1</span></div>
+        <div class="up-desc">바나나 자동 생산 증가</div>
       </div>
-      <button class="btn-upgrade" data-key="production">
-        <span class="up-cost" id="cost-production">10 💰</span>
-      </button>
+      <button class="btn-upgrade" data-key="farm"><span class="up-cost" id="cost-farm">10 💰</span></button>
     </div>
-    <div class="upgrade-row" data-upgrade="luck">
+    <div class="upgrade-row" data-upgrade="factory">
       <div class="up-info">
-        <div class="up-name">🍀 행운 업그레이드 <span class="up-lv" id="lv-luck">Lv.1</span></div>
-        <div class="up-desc">희귀 이벤트 확률 증가</div>
+        <div class="up-name">🏭 복권 공장 <span class="up-lv" id="lv-factory">Lv.1</span></div>
+        <div class="up-desc">로또 추첨 속도 & 보상 증가</div>
       </div>
-      <button class="btn-upgrade" data-key="luck">
-        <span class="up-cost" id="cost-luck">15 🍌</span>
-      </button>
+      <button class="btn-upgrade" data-key="factory"><span class="up-cost" id="cost-factory">15 🍌</span></button>
     </div>
-    <div class="upgrade-row" data-upgrade="auto">
+    <div class="upgrade-row" data-upgrade="lab">
       <div class="up-info">
-        <div class="up-name">⚙️ 자동화 업그레이드 <span class="up-lv" id="lv-auto">Lv.1</span></div>
-        <div class="up-desc">방치 효율 증가</div>
+        <div class="up-name">🧪 연구소 <span class="up-lv" id="lv-lab">Lv.1</span></div>
+        <div class="up-desc">행운 포인트 & 당첨 등급 상승</div>
       </div>
-      <button class="btn-upgrade" data-key="auto">
-        <span class="up-cost" id="cost-auto">20 💰</span>
-      </button>
+      <button class="btn-upgrade" data-key="lab"><span class="up-cost" id="cost-lab">20 💰</span></button>
     </div>
-    <div class="upgrade-row" data-upgrade="event">
+    <div class="upgrade-row" data-upgrade="school">
       <div class="up-info">
-        <div class="up-name">🎉 이벤트 강화 <span class="up-lv" id="lv-event">Lv.1</span></div>
-        <div class="up-desc">병맛 이벤트 보상 증가</div>
+        <div class="up-name">🏫 원숭이 학교 <span class="up-lv" id="lv-school">Lv.1</span></div>
+        <div class="up-desc">새 원숭이 영입 비용 할인</div>
       </div>
-      <button class="btn-upgrade" data-key="event">
-        <span class="up-cost" id="cost-event">25 🍀</span>
-      </button>
+      <button class="btn-upgrade" data-key="school"><span class="up-cost" id="cost-school">25 🍀</span></button>
+    </div>
+    <div class="upgrade-row" data-upgrade="broadcast">
+      <div class="up-info">
+        <div class="up-name">📺 로또 방송국 <span class="up-lv" id="lv-broadcast">Lv.1</span></div>
+        <div class="up-desc">병맛 이벤트 확률 & 보상 증가</div>
+      </div>
+      <button class="btn-upgrade" data-key="broadcast"><span class="up-cost" id="cost-broadcast">30 🍌</span></button>
+    </div>
+    <div class="upgrade-row" data-upgrade="space">
+      <div class="up-info">
+        <div class="up-name">🚀 우주 연구소 <span class="up-lv" id="lv-space">Lv.1</span></div>
+        <div class="up-desc">환생 시 영구 배율 증가</div>
+      </div>
+      <button class="btn-upgrade" data-key="space"><span class="up-cost" id="cost-space">40 🔮</span></button>
     </div>
   </div>
 
-  <!-- 하단 네비게이션 -->
   <div class="bottom-nav">
-    <button id="nav-doljabi-summary" class="nav-btn">
-      <span class="nav-icon">🎲</span><span class="nav-label">돌잡이</span>
-    </button>
-    <button id="nav-ranking" class="nav-btn">
-      <span class="nav-icon">🏆</span><span class="nav-label">랭킹</span>
-    </button>
-    <button id="nav-friend" class="nav-btn">
-      <span class="nav-icon">🤝</span><span class="nav-label">친구</span>
-    </button>
-    <button id="nav-daily" class="nav-btn">
-      <span class="nav-icon">🎁</span><span class="nav-label">출석</span>
-    </button>
-    <button id="nav-tutorial" class="nav-btn">
-      <span class="nav-icon">❓</span><span class="nav-label">도움말</span>
-    </button>
+    <button id="nav-collection" class="nav-btn"><span class="nav-icon">📖</span><span class="nav-label">수집</span></button>
+    <button id="nav-ranking" class="nav-btn"><span class="nav-icon">🏆</span><span class="nav-label">랭킹</span></button>
+    <button id="nav-friend" class="nav-btn"><span class="nav-icon">🤝</span><span class="nav-label">친구</span></button>
+    <button id="nav-prestige" class="nav-btn"><span class="nav-icon">🌌</span><span class="nav-label">환생</span></button>
+    <button id="nav-tutorial" class="nav-btn"><span class="nav-icon">❓</span><span class="nav-label">도움말</span></button>
   </div>
 </div>
 
 <!-- ============ 랭킹 모달 ============ -->
 <div id="modal-ranking" class="modal hidden">
   <div class="modal-box">
-    <div class="modal-header">
-      <h3>🏆 랭킹</h3>
-      <button class="modal-close" data-close="modal-ranking">✕</button>
-    </div>
+    <div class="modal-header"><h3>🏆 랭킹</h3><button class="modal-close" data-close="modal-ranking">✕</button></div>
     <div class="tab-switch">
       <button id="tab-global" class="tab-btn active">전체 랭킹</button>
       <button id="tab-friend" class="tab-btn">친구 랭킹</button>
@@ -146,16 +146,10 @@
 <!-- ============ 친구 모달 ============ -->
 <div id="modal-friend" class="modal hidden">
   <div class="modal-box">
-    <div class="modal-header">
-      <h3>🤝 친구</h3>
-      <button class="modal-close" data-close="modal-friend">✕</button>
-    </div>
+    <div class="modal-header"><h3>🤝 친구</h3><button class="modal-close" data-close="modal-friend">✕</button></div>
     <div class="my-code-box">
       <div class="my-code-label">내 초대 코드</div>
-      <div class="my-code-row">
-        <span id="my-invite-code">------</span>
-        <button id="btn-copy-code" class="btn-small">복사</button>
-      </div>
+      <div class="my-code-row"><span id="my-invite-code">------</span><button id="btn-copy-code" class="btn-small">복사</button></div>
     </div>
     <div class="add-friend-box">
       <input id="friend-code-input" type="text" maxlength="6" placeholder="친구 코드 입력" />
@@ -169,10 +163,7 @@
 <!-- ============ 출석 모달 ============ -->
 <div id="modal-daily" class="modal hidden">
   <div class="modal-box">
-    <div class="modal-header">
-      <h3>🎁 출석 보상</h3>
-      <button class="modal-close" data-close="modal-daily">✕</button>
-    </div>
+    <div class="modal-header"><h3>🎁 출석 보상</h3><button class="modal-close" data-close="modal-daily">✕</button></div>
     <div id="daily-content" class="daily-content"></div>
   </div>
 </div>
@@ -180,10 +171,7 @@
 <!-- ============ 설정 모달 ============ -->
 <div id="modal-settings" class="modal hidden">
   <div class="modal-box">
-    <div class="modal-header">
-      <h3>⚙️ 설정</h3>
-      <button class="modal-close" data-close="modal-settings">✕</button>
-    </div>
+    <div class="modal-header"><h3>⚙️ 설정</h3><button class="modal-close" data-close="modal-settings">✕</button></div>
     <div class="settings-row">
       <span>닉네임</span>
       <div class="settings-nick-edit">
@@ -192,6 +180,27 @@
       </div>
     </div>
     <button id="btn-restart-tutorial" class="btn-secondary btn-full">튜토리얼 다시보기</button>
+  </div>
+</div>
+
+<!-- ============ 수집 모달 (도감) ============ -->
+<div id="modal-collection" class="modal hidden">
+  <div class="modal-box">
+    <div class="modal-header"><h3>📖 도감</h3><button class="modal-close" data-close="modal-collection">✕</button></div>
+    <div class="tab-switch">
+      <button id="tab-monkeys" class="tab-btn active">원숭이 도감</button>
+      <button id="tab-doljabi" class="tab-btn">돌잡이 도감</button>
+    </div>
+    <div id="collection-progress" class="collection-progress"></div>
+    <div id="collection-grid" class="collection-grid"></div>
+  </div>
+</div>
+
+<!-- ============ 환생 모달 ============ -->
+<div id="modal-prestige" class="modal hidden">
+  <div class="modal-box">
+    <div class="modal-header"><h3>🌌 환생</h3><button class="modal-close" data-close="modal-prestige">✕</button></div>
+    <div id="prestige-content" class="prestige-content"></div>
   </div>
 </div>
 
@@ -209,7 +218,6 @@
   </div>
 </div>
 
-<!-- ============ 토스트 ============ -->
 <div id="toast" class="toast hidden"></div>
 
 <script src="game.js"></script>
