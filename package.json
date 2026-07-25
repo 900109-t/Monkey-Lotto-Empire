@@ -1,7 +1,7 @@
 {
-  "name": "monkey-doljabi-empire",
-  "version": "1.0.0",
-  "description": "로또 제국: 원숭이 돌잡이 - 모바일 웹게임",
+  "name": "monkey-lotto-empire",
+  "version": "2.0.0",
+  "description": "로또 제국: 원숭이 돌잡이 - 자동 로또 + 수집 + 환생 확장판",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
